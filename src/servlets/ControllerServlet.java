@@ -1,8 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import dao.MyConnection;
 import dao.UserDao;
 
 /**
@@ -20,6 +23,19 @@ import dao.UserDao;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	public void init(){
+		
+		Connection connection = MyConnection.getConnection();
+		
+		ServletContext ctx = getServletContext();
+		
+		ctx.setAttribute("connection", connection);
+		
+	}
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -42,18 +58,18 @@ public class ControllerServlet extends HttpServlet {
 				
 				
 				// usera ubacujemo u session kako bi mu kasnije mogli dodati sliku
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
+				HttpSession session = request.getSession(); // brisi
+				session.setAttribute("user", user); // brisi
 
 				UserDao.addUserToDatabase(user);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("uploadAPic.jsp");
+			response.sendRedirect("imena.jsp");
 			return;
 		} else {
-			System.out.println("nije prolsa valijdacija");
+			System.out.println("nije prolsa valijdacija"); // brisi
 			response.sendRedirect("register.jsp");
 			return;
 		}

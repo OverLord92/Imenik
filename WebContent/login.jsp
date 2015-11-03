@@ -36,8 +36,7 @@
 							<li><a href="#">Google+</a></li>
 						</ul></li>
 					<li><a href="#">About</a></li>
-					<li><a href="#contact" data-toggle="modal">Contact</a></li>
-
+	
 				</ul>
 			</div>
 		</div>
@@ -76,25 +75,6 @@
 				class="navbar-btn btn-primary btn pull-right">facebook profile<a>
 		</div>
 	</div>
-
-
-	<div class="modal fade" id="contact" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4>kontakt</h4>
-				</div>
-				<div class="modal-body">
-					<p>tijelo mofala</p>
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" data-dismiss="modal">klouz</a>
-					<a href="#" class="btn btn-default" data-dismiss="modal">klouz</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script

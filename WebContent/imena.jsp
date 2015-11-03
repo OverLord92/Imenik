@@ -60,7 +60,7 @@
 	<div class=container>
 		<div class="row">
 			<div class="col-md-3">
-				<a href="#"><img src=Penguins.jpg " height="200" width="200"></a>
+				<a href="uploadAPic.jsp"><img src=Penguins.jpg " height="200" width="200"></a>
 			</div>
 			
 			<div class="col-md-9" style="padding:25px">

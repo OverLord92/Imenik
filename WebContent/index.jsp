@@ -54,9 +54,10 @@
 				</p>
 				<ul>
 				<lh>To do list:</lh>
-				<li> prvo cemo omoguciti korisniku da doda svoj broj u imenik ispunjavajuci formu (27.10.), </li>
-				<li> zatim cemo omoguciti korisniku da pretrazuje imenik (29.10.), </li>
-				<li> zatim cemo namjestiti login i register formu (31.10.). </li>
+				<li> omoguciti korisniku da doda svoj broj u imenik ispunjavajuci formu (27.10.), - uradnjeno</li>
+				<li> omoguciti korisniku da pretrazuje imenik (29.10.), - uradnjeno</li>
+				<li> namjestiti login i register formu (31.10.) - uradnjeno</li>
+				<li> korisniku omoguciti da ubaci profilnu sliku (1.11.) - uradnjeno</li>
 				</ul>
 				<a href="register.jsp" class = "btn btn-default">Do aplikacije<a>
 				<a class = "btn btn-info">Tweer it!</a>

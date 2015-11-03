@@ -92,7 +92,7 @@ public class UploadPicture extends HttpServlet {
 			
 		}
 		
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("imena.jsp");
 		
 		
 		

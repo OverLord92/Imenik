@@ -64,6 +64,7 @@
 
 			<center>
 				<button type="submit" class="btn btn-danger">Upload sliku</button>
+				<a href="imena.jsp" class="btn btn-primary">Cancel</a>
 			</center>
 		</form>
 	</div>
@@ -74,16 +75,7 @@
 	<br>
 	<hr>
 	<br>
-	<div class="container">
-		<center>
-			<h3>Ako ne zelite upload-ovati svoju siku kliknite na link isod</h3>
-		</center>
-		<center>
-			<a href="login.jsp"><button class="btn btn-default">Prijavi
-					se</button></a>
-		</center>
-	</div>
-
+	
 
 
 
