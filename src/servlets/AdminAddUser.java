@@ -31,8 +31,6 @@ public class AdminAddUser extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 		String userPasswordConfirm = request.getParameter("userPasswordConfirm");
 
-		System.out.println(userName + " " + userPassword + " " + userPasswordConfirm);
-		
 		if (Authentication.authenticate(userName, userPassword, userPasswordConfirm)) {
 			try {
 				String userPhoneNumber = request.getParameter("userPhoneNumber");
@@ -51,7 +49,6 @@ public class AdminAddUser extends HttpServlet {
 			response.sendRedirect("adminMenu.jsp");
 			return;
 		} else {
-			System.out.println("nije prolsa valijdacija");
 			response.sendRedirect("adminMenu.jsp");
 			return;
 		}

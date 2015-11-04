@@ -50,7 +50,7 @@
 							<li><a href="#">Google+</a></li>
 						</ul></li>
 					<li><a href="#">About</a></li>
-					<li><a href="#contact" data-toggle="modal">Contact</a></li>
+					<li><a href="#logOut" data-toggle="modal">Log Out</a></li>
 
 				</ul>
 			</div>
@@ -96,7 +96,7 @@
 				<tr>
 					<td><%=userContacts.get(i).getContactName()%></td>
 					<td><%=userContacts.get(i).getContactPhoneNumber()%></td>
-					<td><%=userContacts.get(i).getEmail_address()%></td>
+					<td><%=userContacts.get(i).getEmailAddress()%></td>
 				</tr>
 				<%
 					}
@@ -162,18 +162,16 @@
 	</div>
 
 
-	<div class="modal fade" id="contact" role="dialog">
+	<div class="modal fade" id="logOut" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4>kontakt</h4>
-				</div>
-				<div class="modal-body">
-					<p>tijelo mofala</p>
+					<h4>Klikni na Log Out da bi se odjavio</h4>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" data-dismiss="modal">klouz</a>
-					<a href="#" class="btn btn-default" data-dismiss="modal">klouz</a>
+					<form action="LogOut" method="post">
+					<center><button type="submit" class="btn btn-dafault">Odjavi se</button></center>
+					</form>
 				</div>
 			</div>
 		</div>

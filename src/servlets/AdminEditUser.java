@@ -33,7 +33,8 @@ public class AdminEditUser extends HttpServlet {
 		String password = request.getParameter("userPassword");
 		
 		try {
-			User user = UserDao.getUser(userName);
+			
+			User user = UserDao.getUser(userName, (Connection)getServletContext().getAttribute("connection"));
 			
 			user.setUserPhoneNumber(phoneNumber);
 			user.setUserEmailAddress(userEmailAddress);
@@ -44,11 +45,7 @@ public class AdminEditUser extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
+			
 		response.sendRedirect("adminMenu.jsp");
 		
 	}

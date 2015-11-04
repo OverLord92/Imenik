@@ -1,10 +1,11 @@
 package beans;
 
+// bean class which represents users contacts
 public class Contact {
 	
 	private String contactName;
 	private String contactPhoneNumber;
-	private String email_address;
+	private String emailAddress;
 	
 	
 	public String getContactName() {
@@ -27,15 +28,17 @@ public class Contact {
 	}
 
 
-	public String getEmail_address() {
-		return this.email_address;
+	public String getEmailAddress() {
+		return this.emailAddress;
 	}
 	
+	public Contact(){
+	}
 	
-	public Contact(String contactName, String contactPhoneNumber, String email_address) {
+	public Contact(String contactName, String contactPhoneNumber, String emailAddress) {
 		this.contactName = contactName;
 		this.contactPhoneNumber = contactPhoneNumber;
-		this.email_address = email_address;
+		this.emailAddress = emailAddress;
 	}
 
 	

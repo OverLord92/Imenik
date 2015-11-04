@@ -43,16 +43,9 @@ public class Authentication {
 	}
 
 	public static boolean userNameAvailable(String userName) throws SQLException {
-		ArrayList<String> userNames = UserDao.getUserNames();
-
-		for (String str : userNames) {
-			if (userName.equals(str)) {
-				System.out.println("Korisnik zauzet");
-				return false;
-			}
-		}
-
-		return true;
+		
+		return !UserDao.doesUserExists(userName);
+		
 	}
 
 	/**

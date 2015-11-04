@@ -12,25 +12,16 @@ import beans.User;
 
 public class UserDao {
 	
-	
-	public static void main(String[] args){
-		System.out.println(getNextAvailableUserId());
-		
-	}
-
 	/**
 	 * if the user passes the authentication call this method to add user to
 	 * database
 	 */
 	public static void addUserToDatabase(User user, Connection connection) throws SQLException {
 		
-		
-
 		try (
 				PreparedStatement stmt = connection
 						.prepareStatement("INSERT INTO users(userName, userPassword, phone_number, email_address, active)" 
 				+ " VALUES(?, ?, ?, ?, ?)");
-				
 				) {
 
 			
@@ -40,11 +31,8 @@ public class UserDao {
 			stmt.setString(4, user.getUserEmailAddress());
 			stmt.setInt(5, 1);
 			
-			
-
 			stmt.executeUpdate();
 			
-			System.out.println("sksesfuli"); // brisi
 		} 
 
 	}
@@ -56,23 +44,19 @@ public class UserDao {
 	 */
 	public static void deleteUserFromDatabase(String userName, Connection connection) throws SQLException {
 		
-		
-
 		try (
 				PreparedStatement stmt = connection
 						.prepareStatement("DELETE FROM users WHERE userName=?");
-				
 				) {
 
-			
 			stmt.setString(1, userName);			
 
 			stmt.executeUpdate();
 			
-			System.out.println("sksesfuli"); // brisi
 		} 
 
 	}
+	
 	
 	public static void updateUserInDatabase(User user, Connection connection) {
 		
@@ -81,15 +65,12 @@ public class UserDao {
 						.prepareStatement("UPDATE users SET userPassword=?, phone_number=?, email_address=?   WHERE userName = ?");
 				) {
 
-			
 			stmt.setString(1, user.getUserPassword());
 			stmt.setString(2, user.getUserPhoneNumber());
 			stmt.setString(3, user.getUserEmailAddress());
 			stmt.setString(4, user.getUserName());
 	
 			stmt.executeUpdate();
-			
-			System.out.println("sksesfuli"); // brisi
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -114,14 +95,14 @@ public class UserDao {
 			stmt.executeUpdate();
 			
 			user.setLinkToImage(linkToImage);
-			
-			System.out.println("sksesfuli");
+	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 		
 	}
 
+	
 	public static int getNextAvailableUserId() {
 
 		int nextAvailableUserId = 0;
@@ -144,7 +125,7 @@ public class UserDao {
 	}
 
 	/**
-	 * return an arraylist with userNames to check if a userName already exists
+	 * return an array list with userNames to check if a userName already exists
 	 * in the database
 	 * 
 	 * @throws SQLException
@@ -167,13 +148,15 @@ public class UserDao {
 		return userNames;
 	}
 
+	
 	public static boolean doesUserExists(String userName) throws SQLException {
 
 		ArrayList<String> userNames = getUserNames();
 
-		return userNames.size() > 0;
+		return userNames.contains(userName);
 
 	}
+	
 
 	public static String getUsersPassword(String userName, Connection connection) throws SQLException {
 
@@ -195,6 +178,7 @@ public class UserDao {
 		return userPassword;
 	}
 
+	
 	public static String getUsersId(String userName, Connection connection) throws SQLException {
 
 		String useriD = null;
@@ -205,10 +189,9 @@ public class UserDao {
 
 			result = stmt.executeQuery();
 
-			result.next();
-
-			useriD = result.getString(1);
-
+			if(result.next()){
+				useriD = result.getString(1);
+			}
 		}
 
 		return useriD;
@@ -216,13 +199,13 @@ public class UserDao {
 	
 	
 	
-	public static User getUser(String userName) throws SQLException {
+	public static User getUser(String userName, Connection connection) throws SQLException {
 
 		User user = null;
 		ResultSet result = null;
 		
 		try (
-				Connection connection = MyConnection.getConnection();
+				
 				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE userName=?");) {
 			stmt.setString(1, userName);
 
@@ -234,33 +217,31 @@ public class UserDao {
 			String userPassword = result.getString(3);
 			String userPhoneNumber = result.getString(4);
 			String email_address = result.getString(5);
-			String userActive = result.getString(6);
-			String userImage = result.getString(7);
+			String userImage = result.getString(6);
 			
 			user = new User(userName, userPassword, userPhoneNumber, email_address, userImage);
 			user.setUserId(userId);
-			user.setActive(userActive);
+			
 		}
 
 		return user;
 	}
 	
 	public static ArrayList<User> getAllUsers() throws SQLException{
+		
+		Connection connection = MyConnection.getConnection();
+		
 		ArrayList<User> users = new ArrayList<>();
 		
 		ArrayList<String> userNames = getUserNames();
 		
 		for(int i = 0; i < userNames.size(); i++){
 			
-			users.add(getUser(userNames.get(i)));		
+			users.add(getUser(userNames.get(i), connection));		
 		
 		}
 		
-		return users;
-		
-		
-		
-		
+		return users;	
 		
 	}
 }

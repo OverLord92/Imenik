@@ -1,6 +1,5 @@
 package servlets;
 
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,86 +25,77 @@ import dao.UserDao;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
-	public void init(){
-		
+	public void init() {
+
 		ServletContext ctx = getServletContext();
-		
-		
+
 		System.out.println("Konekcija iz init metode controler servleta"); // brisi
-		
+
 		// kreiraj konekciju samo ukoliko vec ne postoji kao atribut konteksta
-		if(ctx.getAttribute("connection") == null){	
+		if (ctx.getAttribute("connection") == null) {
 			Connection connection = MyConnection.getConnection();
 			ctx.setAttribute("connection", connection);
 		}
 	}
-	
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
-		
+
 		boolean userNameExists = false;
 		boolean passwordMatches = false;
-		
+
 		try {
 			// check if the entered user name exists in the database
 			userNameExists = UserDao.doesUserExists(userName);
 			// check if the entered password matches users password
-			passwordMatches = UserDao.getUsersPassword(userName, (Connection)getServletContext().getAttribute("connection")).equals(userPassword);
-			
+			passwordMatches = UserDao
+					.getUsersPassword(userName, (Connection) getServletContext().getAttribute("connection"))
+					.equals(userPassword);
+
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
-		
+
 		ServletContext ctx = getServletContext();
 		String adminName = ctx.getInitParameter("adminName");
 		String adminPassword = ctx.getInitParameter("adminPassword");
-		
-		System.out.println(adminName + " " + adminPassword);
-		System.out.println(userName + " " + userPassword);
-		
-		if((userName.equals(adminName))&&(userPassword.equals(adminPassword))){
+
+		if ((userName.equals(adminName)) && (userPassword.equals(adminPassword))) {
 			response.sendRedirect("adminMenu.jsp");
 		}
 		// if the previous two condition are true allow the user to log in
-		else if(userNameExists && passwordMatches){
-			
+		else if (userNameExists && passwordMatches) {
+
 			User user = null;
 			try {
-				user = UserDao.getUser(userName);
-				
+
+				user = UserDao.getUser(userName, (Connection) getServletContext().getAttribute("connection"));
+
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			ArrayList<Contact> userContacts = ContactDao.getUserContacts(user.getUserId(), (Connection)getServletContext().getAttribute("connection"));
-			
-			for(Contact c: userContacts) // brisi
-				System.out.println(c.getContactName()); // brisi
-			
-			
+
+			ArrayList<Contact> userContacts = ContactDao.getUserContacts(user.getUserId(),
+					(Connection) getServletContext().getAttribute("connection"));
+
 			HttpSession session = request.getSession();
 			session.setAttribute("userContacts", userContacts);
-			
-			
+
 			response.sendRedirect("imena.jsp");
-		}	
-		else {
+		} else {
 			response.sendRedirect("login.jsp");
 		}
-		
 	}
-
-
 }

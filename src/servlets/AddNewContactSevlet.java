@@ -46,7 +46,7 @@ public class AddNewContactSevlet extends HttpServlet {
 		userContacts.add(contact);
 		
 		User user = (User)(session.getAttribute("user"));
-		System.out.println("probaj sad juzer ajdi" + user.getUserId()); // brisi
+	
 		ContactDao.addContactToDatabase(user.getUserId(), contact, (Connection)getServletContext().getAttribute("connection"));
 		
 		session.setAttribute("userContacts", userContacts);

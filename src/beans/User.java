@@ -11,7 +11,6 @@ public class User {
 	private String userPassword;
 	private String userPhoneNumber;
 	private String userEmailAddress;
-	private String active;
 	private String linkToImage;
 	private ArrayList<Contact> contacts;
 	
@@ -70,13 +69,11 @@ public class User {
 		this.linkToImage = linkToImage;
 	}
 
-	public void setActive(String active) {
-		this.active = active;
-	}
-
-
 	public ArrayList<Contact> getContacts() {
 		return contacts;
+	}
+	
+	public User(){
 	}
 
 

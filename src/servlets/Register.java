@@ -17,10 +17,10 @@ import dao.MyConnection;
 import dao.UserDao;
 
 /**
- * Servlet implementation class ControllerServlet
+ * Servlet implementation class Register
  */
 @WebServlet("/controller")
-public class ControllerServlet extends HttpServlet {
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -28,14 +28,11 @@ public class ControllerServlet extends HttpServlet {
 	public void init(){
 		
 		Connection connection = MyConnection.getConnection();
-		System.out.println("Konekcija iz init metode controler servleta");
 		
 		ServletContext ctx = getServletContext();
-		
 		ctx.setAttribute("connection", connection);
 		
 	}
-	
 	
 	
 	/**
@@ -51,8 +48,6 @@ public class ControllerServlet extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 		String userPasswordConfirm = request.getParameter("userPasswordConfirm");
 
-		System.out.println(userName + " " + userPassword + " " + userPasswordConfirm);
-		
 		if (Authentication.authenticate(userName, userPassword, userPasswordConfirm)) {
 			try {
 				String userPhoneNumber = request.getParameter("userPhoneNumber");
@@ -60,13 +55,7 @@ public class ControllerServlet extends HttpServlet {
 				
 				User user = new User(userName, userPassword, userPhoneNumber, userEmailAddress, null);
 				
-				
-				// usera ubacujemo u session kako bi mu kasnije mogli dodati sliku
-				HttpSession session = request.getSession(); // brisi
-				session.setAttribute("user", user); // brisi
-
 				UserDao.addUserToDatabase(user, (Connection)getServletContext().getAttribute("connection"));
-				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -74,7 +63,6 @@ public class ControllerServlet extends HttpServlet {
 			response.sendRedirect("login.jsp");
 			return;
 		} else {
-			System.out.println("nije prolsa valijdacija"); // brisi
 			response.sendRedirect("register.jsp");
 			return;
 		}

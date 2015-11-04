@@ -27,8 +27,7 @@ public class AdminDeleteUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userName = request.getParameter("userName");
-		System.out.println(userName);
-		
+	
 		try {
 			
 			String user_id = UserDao.getUsersId(userName, (Connection)getServletContext().getAttribute("connection"));

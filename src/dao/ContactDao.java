@@ -35,15 +35,16 @@ public class ContactDao {
 
 	}
 
-	public static void addContactToDatabase(String user_id, Contact contact, Connection con) {
+	public static void addContactToDatabase(String user_id, Contact contact, Connection connection) {
 
-		try ( PreparedStatement stmt = con.prepareStatement(
+		try ( 
+				PreparedStatement stmt = connection.prepareStatement(
 						"INSERT INTO contacts (user_id, contactName, contactNumber, email_address) VALUES (?, ?, ?, ?)");) {
 
 			stmt.setString(1, user_id);
 			stmt.setString(2, contact.getContactName());
 			stmt.setString(3, contact.getContactPhoneNumber());
-			stmt.setString(4, contact.getEmail_address());
+			stmt.setString(4, contact.getEmailAddress());
 
 			stmt.executeUpdate();
 

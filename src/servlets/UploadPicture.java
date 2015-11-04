@@ -29,8 +29,6 @@ public class UploadPicture extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
 		String saveFile = new String();
 		String contentType = request.getContentType();
 		
@@ -73,15 +71,10 @@ public class UploadPicture extends HttpServlet {
 			saveFile = "C:/Users/GEDORA/git/Imenik/WebContent/images/" + saveFile;
 			
 			File ff = new File(saveFile);
-			
-			
-			
-			
+				
 			HttpSession session = request.getSession();	
 			User user = (User)session.getAttribute("user");
 			UserDao.setUserPicture(user, saveFile, (Connection)getServletContext().getAttribute("connection"));
-			
-			
 			
 			try{
 				FileOutputStream fileOut = new FileOutputStream(ff);
@@ -95,11 +88,5 @@ public class UploadPicture extends HttpServlet {
 		
 		response.sendRedirect("imena.jsp");
 		
-		
-		
-		
-		
-		
 	}
-
 }
