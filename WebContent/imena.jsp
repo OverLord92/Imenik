@@ -60,7 +60,8 @@
 	<div class=container>
 		<div class="row">
 			<div class="col-md-3">
-				<a href="uploadAPic.jsp"><img src=Penguins.jpg " height="200" width="200"></a>
+				<a href="uploadAPic.jsp"><img src=Penguins.jpg " height="200" width="200"></a><br>
+				Kliknite sliku da azurirate sliku.
 			</div>
 			
 			<div class="col-md-9" style="padding:25px">
@@ -180,8 +181,7 @@
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 

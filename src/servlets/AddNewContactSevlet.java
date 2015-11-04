@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -45,9 +46,8 @@ public class AddNewContactSevlet extends HttpServlet {
 		userContacts.add(contact);
 		
 		User user = (User)(session.getAttribute("user"));
-		String user_id = user.getUserId();
-		System.out.println("probaj sad juzer ajdi" + user_id);
-		ContactDao.addContactToDatabase(user_id, contact);
+		System.out.println("probaj sad juzer ajdi" + user.getUserId()); // brisi
+		ContactDao.addContactToDatabase(user.getUserId(), contact, (Connection)getServletContext().getAttribute("connection"));
 		
 		session.setAttribute("userContacts", userContacts);
 		

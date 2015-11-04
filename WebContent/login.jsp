@@ -60,11 +60,20 @@
 							placeholder = "unesite sifru">
 				</div>
 			</div>
-		
+		<br>
 			<center><button type="submit" class="btn btn-dafault">Prijavi se</button></center>
 		</form>
 	</div>
 	
+	<br><br><br>
+	
+	
+	<div class="container">
+	<center><h3>Ukoliko niste registrovani klinite na </h3></center>
+	<br>
+			<center><a href = "register.jsp" class="btn btn-primary">register se</a></center>
+	</div>
+
 	<br><br>
 
 	<div class="navbar navbar-default navbar-fixed-bottom">

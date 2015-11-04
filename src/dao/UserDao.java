@@ -22,12 +22,12 @@ public class UserDao {
 	 * if the user passes the authentication call this method to add user to
 	 * database
 	 */
-	public static void addUserToDatabase(User user) throws SQLException {
+	public static void addUserToDatabase(User user, Connection connection) throws SQLException {
 		
 		
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con
+		try (
+				PreparedStatement stmt = connection
 						.prepareStatement("INSERT INTO users(userName, userPassword, phone_number, email_address, active)" 
 				+ " VALUES(?, ?, ?, ?, ?)");
 				
@@ -44,7 +44,7 @@ public class UserDao {
 
 			stmt.executeUpdate();
 			
-			System.out.println("sksesfuli");
+			System.out.println("sksesfuli"); // brisi
 		} 
 
 	}
@@ -54,12 +54,12 @@ public class UserDao {
 	 * if the user passes the authentication call this method to add user to
 	 * database
 	 */
-	public static void deleteUserFromDatabase(String userName) throws SQLException {
+	public static void deleteUserFromDatabase(String userName, Connection connection) throws SQLException {
 		
 		
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con
+		try (
+				PreparedStatement stmt = connection
 						.prepareStatement("DELETE FROM users WHERE userName=?");
 				
 				) {
@@ -69,15 +69,15 @@ public class UserDao {
 
 			stmt.executeUpdate();
 			
-			System.out.println("sksesfuli");
+			System.out.println("sksesfuli"); // brisi
 		} 
 
 	}
 	
-	public static void updateUserInDatabase(User user) {
+	public static void updateUserInDatabase(User user, Connection connection) {
 		
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con
+		try (
+				PreparedStatement stmt = connection
 						.prepareStatement("UPDATE users SET userPassword=?, phone_number=?, email_address=?   WHERE userName = ?");
 				) {
 
@@ -89,7 +89,8 @@ public class UserDao {
 	
 			stmt.executeUpdate();
 			
-			System.out.println("sksesfuli");
+			System.out.println("sksesfuli"); // brisi
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -99,10 +100,10 @@ public class UserDao {
 	
 	
 	
-	public static void setUserPicture(User user, String linkToImage){
+	public static void setUserPicture(User user, String linkToImage, Connection connection){
 		
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con
+		try (
+				PreparedStatement stmt = connection
 						.prepareStatement("UPDATE users SET user_image=? WHERE userName = ?");
 				) {
 
@@ -125,7 +126,10 @@ public class UserDao {
 
 		int nextAvailableUserId = 0;
 
-		try (Connection connection = MyConnection.getConnection(); Statement stmt = connection.createStatement();) {
+		try (	
+				Connection connection = MyConnection.getConnection();
+				Statement stmt = connection.createStatement();
+				) {
 			ResultSet result = stmt.executeQuery("SELECT MAX(user_id) FROM users;");
 
 			if (result.next()) {
@@ -148,8 +152,9 @@ public class UserDao {
 	public static ArrayList<String> getUserNames() throws SQLException {
 		ArrayList<String> userNames = new ArrayList<>();
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT userName FROM users");) {
+		try (
+				Connection connection = MyConnection.getConnection();
+				PreparedStatement stmt = connection.prepareStatement("SELECT userName FROM users");) {
 
 			ResultSet resultSet = stmt.executeQuery();
 
@@ -170,12 +175,13 @@ public class UserDao {
 
 	}
 
-	public static String getUsersPassword(String userName) throws SQLException {
+	public static String getUsersPassword(String userName, Connection connection) throws SQLException {
 
 		String userPassword = null;
 		ResultSet result = null;
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT userPassword FROM users WHERE userName=?");) {
+		
+		try (
+				PreparedStatement stmt = connection.prepareStatement("SELECT userPassword FROM users WHERE userName=?");) {
 			stmt.setString(1, userName);
 
 			result = stmt.executeQuery();
@@ -189,12 +195,12 @@ public class UserDao {
 		return userPassword;
 	}
 
-	public static String getUsersId(String userName) throws SQLException {
+	public static String getUsersId(String userName, Connection connection) throws SQLException {
 
 		String useriD = null;
 		ResultSet result = null;
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT user_id FROM users WHERE userName=?");) {
+		try (
+				PreparedStatement stmt = connection.prepareStatement("SELECT user_id FROM users WHERE userName=?");) {
 			stmt.setString(1, userName);
 
 			result = stmt.executeQuery();
@@ -214,8 +220,10 @@ public class UserDao {
 
 		User user = null;
 		ResultSet result = null;
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT * FROM users WHERE userName=?");) {
+		
+		try (
+				Connection connection = MyConnection.getConnection();
+				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE userName=?");) {
 			stmt.setString(1, userName);
 
 			result = stmt.executeQuery();
@@ -245,6 +253,7 @@ public class UserDao {
 		for(int i = 0; i < userNames.size(); i++){
 			
 			users.add(getUser(userNames.get(i)));		
+		
 		}
 		
 		return users;

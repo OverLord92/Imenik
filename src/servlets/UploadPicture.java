@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -69,7 +70,7 @@ public class UploadPicture extends HttpServlet {
 			int startPos = ((file.substring(0, pos)).getBytes()).length;
 			int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
 			
-			saveFile = "C:/Users/GEDORA/workspace/Imenik/WebContent/images/" + saveFile;
+			saveFile = "C:/Users/GEDORA/git/Imenik/WebContent/images/" + saveFile;
 			
 			File ff = new File(saveFile);
 			
@@ -78,7 +79,7 @@ public class UploadPicture extends HttpServlet {
 			
 			HttpSession session = request.getSession();	
 			User user = (User)session.getAttribute("user");
-			UserDao.setUserPicture(user, saveFile);
+			UserDao.setUserPicture(user, saveFile, (Connection)getServletContext().getAttribute("connection"));
 			
 			
 			

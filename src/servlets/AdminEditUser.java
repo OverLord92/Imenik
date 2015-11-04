@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -38,7 +39,7 @@ public class AdminEditUser extends HttpServlet {
 			user.setUserEmailAddress(userEmailAddress);
 			user.setUserPassword(password);
 			
-			UserDao.updateUserInDatabase(user);
+			UserDao.updateUserInDatabase(user, (Connection)getServletContext().getAttribute("connection"));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -30,10 +31,11 @@ public class AdminDeleteUser extends HttpServlet {
 		
 		try {
 			
-			String user_id = UserDao.getUsersId(userName);
-			ContactDao.deleteContactsFromDatabase(user_id);
+			String user_id = UserDao.getUsersId(userName, (Connection)getServletContext().getAttribute("connection"));
 			
-			UserDao.deleteUserFromDatabase(userName);
+			ContactDao.deleteContactsFromDatabase(user_id, (Connection)getServletContext().getAttribute("connection"));
+			
+			UserDao.deleteUserFromDatabase(userName, (Connection)getServletContext().getAttribute("connection"));
 			
 			
 			

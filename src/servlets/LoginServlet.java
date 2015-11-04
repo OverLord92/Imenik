@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import beans.Contact;
 import beans.User;
 import dao.ContactDao;
+import dao.MyConnection;
 import dao.UserDao;
 
 /**
@@ -24,6 +26,22 @@ import dao.UserDao;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void init(){
+		
+		ServletContext ctx = getServletContext();
+		
+		
+		System.out.println("Konekcija iz init metode controler servleta"); // brisi
+		
+		// kreiraj konekciju samo ukoliko vec ne postoji kao atribut konteksta
+		if(ctx.getAttribute("connection") == null){	
+			Connection connection = MyConnection.getConnection();
+			ctx.setAttribute("connection", connection);
+		}
+	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			// check if the entered user name exists in the database
 			userNameExists = UserDao.doesUserExists(userName);
 			// check if the entered password matches users password
-			passwordMatches = UserDao.getUsersPassword(userName).equals(userPassword);
+			passwordMatches = UserDao.getUsersPassword(userName, (Connection)getServletContext().getAttribute("connection")).equals(userPassword);
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -71,10 +89,10 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			ArrayList<Contact> userContacts = ContactDao.getUserContacts(user.getUserId());
+			ArrayList<Contact> userContacts = ContactDao.getUserContacts(user.getUserId(), (Connection)getServletContext().getAttribute("connection"));
 			
-			for(Contact c: userContacts)
-				System.out.println(c.getContactName());
+			for(Contact c: userContacts) // brisi
+				System.out.println(c.getContactName()); // brisi
 			
 			
 			HttpSession session = request.getSession();

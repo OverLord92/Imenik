@@ -6,20 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
-
 import beans.Contact;
 
 public class ContactDao {
 
 	/**  */
-	public static ArrayList<Contact> getUserContacts(String user_id) {
+	public static ArrayList<Contact> getUserContacts(String user_id, Connection connection) {
 
 		ArrayList<Contact> userContacts = new ArrayList<>();
 		ResultSet result = null;
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT * FROM contacts WHERE user_id=?");) {
+		try (
+				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM contacts WHERE user_id=?");) {
 			stmt.setString(1, user_id);
 
 			result = stmt.executeQuery();
@@ -37,10 +35,9 @@ public class ContactDao {
 
 	}
 
-	public static void addContactToDatabase(String user_id, Contact contact) {
+	public static void addContactToDatabase(String user_id, Contact contact, Connection con) {
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con.prepareStatement(
+		try ( PreparedStatement stmt = con.prepareStatement(
 						"INSERT INTO contacts (user_id, contactName, contactNumber, email_address) VALUES (?, ?, ?, ?)");) {
 
 			stmt.setString(1, user_id);
@@ -55,12 +52,12 @@ public class ContactDao {
 		}
 	}
 	
-	public static void deleteContactsFromDatabase(String user_id) throws SQLException {
+	public static void deleteContactsFromDatabase(String user_id, Connection connection) throws SQLException {
 		
 		
 
-		try (Connection con = MyConnection.getConnection();
-				PreparedStatement stmt = con
+		try (
+				PreparedStatement stmt = connection
 						.prepareStatement("DELETE FROM contacts WHERE user_id=?");
 				
 				) {

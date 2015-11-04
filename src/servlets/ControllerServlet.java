@@ -22,11 +22,13 @@ import dao.UserDao;
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Override
 	public void init(){
 		
 		Connection connection = MyConnection.getConnection();
+		System.out.println("Konekcija iz init metode controler servleta");
 		
 		ServletContext ctx = getServletContext();
 		
@@ -42,6 +44,8 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		getServletContext().getAttribute("nema");
 
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
@@ -61,12 +65,13 @@ public class ControllerServlet extends HttpServlet {
 				HttpSession session = request.getSession(); // brisi
 				session.setAttribute("user", user); // brisi
 
-				UserDao.addUserToDatabase(user);
+				UserDao.addUserToDatabase(user, (Connection)getServletContext().getAttribute("connection"));
+				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("imena.jsp");
+			response.sendRedirect("login.jsp");
 			return;
 		} else {
 			System.out.println("nije prolsa valijdacija"); // brisi

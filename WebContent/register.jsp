@@ -98,13 +98,6 @@
 	<br>
 	<hr>
 	<br>
-	<div class="container">
-	<center><h3>Ukoliko ste vec registrovani kliknite na link ispod</h3></center>
-			<center><a href = "login.jsp"><button class="btn btn-default">Prijavi se</button></a></center>
-	</div>
-
-
-
 
 	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="container">

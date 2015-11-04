@@ -59,7 +59,7 @@
 				<li> namjestiti login i register formu (31.10.) - uradnjeno</li>
 				<li> korisniku omoguciti da ubaci profilnu sliku (1.11.) - uradnjeno</li>
 				</ul>
-				<a href="register.jsp" class = "btn btn-default">Do aplikacije<a>
+				<a href="login.jsp" class = "btn btn-default">Do aplikacije<a>
 				<a class = "btn btn-info">Tweer it!</a>
 			</div>
 		</div>

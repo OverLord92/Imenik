@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -42,7 +43,7 @@ public class AdminAddUser extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 
-				UserDao.addUserToDatabase(user);
+				UserDao.addUserToDatabase(user, (Connection)getServletContext().getAttribute("connection"));
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
