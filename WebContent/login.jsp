@@ -46,7 +46,7 @@
 
 	<div class="container">
 	<center><h3>Prijavi se</h3></center>
-		<form action = "LoginServlet" class="form-horizontal" method = "post">
+		<form id="login-form" action = "LoginServlet" class="form-horizontal" method = "post">
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
 				<div class="col-sm-10">
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 		<br>
-			<center><button type="submit" class="btn btn-dafault">Prijavi se</button></center>
+			<center><button id="submit-button" type="submit" class="btn btn-dafault">Prijavi se</button></center>
 		</form>
 	</div>
 	
@@ -88,10 +88,15 @@
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	<!-- 	jQuery validation -->
+	<script src ="js/jquery.core.js"></script> 
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.custom.validation.js"></script>
 
 
 </body>

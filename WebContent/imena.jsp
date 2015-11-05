@@ -112,7 +112,7 @@
 		<center>
 			<h3>Unesite novi kontakt</h3>
 		</center>
-		<form action="AddContact" class="form-horizontal" method="post">
+		<form id="add-contact-form" action="AddContact" class="form-horizontal" method="post">
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Kontakt
 					ime</label>
@@ -182,6 +182,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	<!-- 	jQuery validation -->
+	<script src ="js/jquery.core.js"></script> 
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.custom.validation.js"></script>
 
 
 </body>

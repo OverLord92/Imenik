@@ -51,7 +51,7 @@
 	<div class="container">
 	<center><h3>Editujete korisnika: </h3></center><br>
 	
-		<form action = "EditUser" class="form-horizontal" method="POST" >
+		<form id="register-form" action = "EditUser" class="form-horizontal" method="POST" >
 		
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
@@ -122,6 +122,11 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	<!-- 	jQuery validation -->
+	<script src ="js/jquery.core.js"></script> 
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.custom.validation.js"></script>
 
 
 </body>

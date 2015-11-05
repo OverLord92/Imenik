@@ -47,7 +47,7 @@
 	<div class="container">
 	<center><h3>Registruj se</h3></center>
 	
-		<form action = "controller" class="form-horizontal" method="POST" >
+		<form id ="register-form" action = "controller" class="form-horizontal" method="POST" >
 		
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
@@ -77,7 +77,7 @@
 			<div class="form-group">
 				<label for="userPassword" class="col-sm-2 control-label">Sifra</label>
 				<div class="col-sm-3">
-						<input type = "password" name="userPassword" class="form-control" id="userPassword"
+						<input id="userPassword" type = "password" name="userPassword" class="form-control" id="userPassword"
 							placeholder = "unesite sfru">
 				</div>
 			</div>
@@ -113,6 +113,13 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	
+	<!-- 	jQuery validation -->
+	<script src ="js/jquery.core.js"></script> 
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.validate.additional.js"></script>
+	<script src="js/jquery.custom.validation.js"></script>
 
 
 </body>
