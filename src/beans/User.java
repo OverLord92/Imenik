@@ -1,10 +1,13 @@
 package beans;
 
+import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.ContactDao;
 import dao.UserDao;
 
-public class User {
+public class User implements Serializable{
 	
 	private String userId;
 	private String userName;
@@ -77,14 +80,17 @@ public class User {
 	}
 
 
-	public User(String userName, String userPassword, String userPhoneNumber, String userEmailAddress, String linkToImage){
-		this.userId = UserDao.getNextAvailableUserId() + "";
+	// treba ubaciti konstruktor za registraciju
+	
+	// konstruktor za login
+	public User(String userName, String userPassword, String userPhoneNumber, String userEmailAddress, String linkToImage) throws SQLException{
+		this.userId = UserDao.getUsersId(userName);
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userPhoneNumber = userPhoneNumber;
 		this.userEmailAddress = userEmailAddress;
 		this.linkToImage = linkToImage;
-		this.contacts = new ArrayList<>();
+		this.contacts = ContactDao.getUserContacts(userId);
 	}
 	
 	

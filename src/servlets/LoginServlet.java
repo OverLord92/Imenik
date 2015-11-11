@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -83,18 +86,16 @@ public class LoginServlet extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
-			ArrayList<Contact> userContacts = ContactDao.getUserContacts(user.getUserId(),
-					(Connection) getServletContext().getAttribute("connection"));
-
-			HttpSession session = request.getSession();
-			session.setAttribute("userContacts", userContacts);
-
-			response.sendRedirect("imena.jsp");
+		
+			
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("imena.jsp");
+			dispatcher.forward(request, response);
+			
 		} else {
 			response.sendRedirect("login.jsp");
 		}

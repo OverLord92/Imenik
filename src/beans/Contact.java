@@ -1,7 +1,9 @@
 package beans;
 
+import java.io.Serializable;
+
 // bean class which represents users contacts
-public class Contact {
+public class Contact implements Serializable{
 	
 	private String contactName;
 	private String contactPhoneNumber;

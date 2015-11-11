@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" session="false"%>
+	pageEncoding="ISO-8859-1" %>
 <%@ page import="beans.User"%>
 <%@ page import="beans.Contact"%>
 <%@ page import="java.util.ArrayList"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,16 +15,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 </head>
-
-<%
-	HttpSession session = request.getSession();
-	ArrayList<Contact> userContacts = (ArrayList<Contact>) session.getAttribute("userContacts");
-
-	User user = (User) session.getAttribute("user");
-	String linkImage = user.getLinkToImage();
-
-	System.out.println(linkImage);
-%>
 
 <body>
 
@@ -56,21 +49,22 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class=container>
 		<div class="row">
 			<div class="col-md-3">
-				<a href="uploadAPic.jsp"><img src=Penguins.jpg " height="200" width="200"></a><br>
+				<a href="uploadAPic.jsp"><img src="${user.linkToImage}" height="200" width="200"></a><br>
 				Kliknite sliku da azurirate sliku.
 			</div>
 			
 			<div class="col-md-9" style="padding:25px">
+				<jsp:useBean id="userBean" class="beans.User" />
 				<label>ime i prezime</label><br>
-				<%=user.getUserName() %><br><br>
+				${user.userName}<br>
 				<label>broj telefona</label><br>
-				<%=user.getUserPhoneNumber() %><br><br>
+				${user.userPhoneNumber}<br>
 				<label>mejl</label><br>
-				<%=user.getUserEmailAddress() %><br><br>
+				${user.userEmailAddress}<br>
 			</div>
 		</div>
 	</div>
@@ -78,6 +72,7 @@
 	<br>
 	<br>
 
+	
 	<div class="container">
 		<div class="table-responsive">
 			<table class="table">
@@ -88,21 +83,14 @@
 					<th>Kontakt email</th>
 				</tr>
 
-
-
-				<%
-					for (int i = 0; i < userContacts.size(); i++) {
-				%>
-				<tr>
-					<td><%=userContacts.get(i).getContactName()%></td>
-					<td><%=userContacts.get(i).getContactPhoneNumber()%></td>
-					<td><%=userContacts.get(i).getEmailAddress()%></td>
-				</tr>
-				<%
-					}
-				%>
-
-			</table>
+				<c:forEach items="${user.contacts}" var="element">
+				<tr> 
+ 					<td>${element.contactName}</td>
+ 					<td>${element.contactPhoneNumber}</td>
+ 					<td>${element.emailAddress}</td> 
+				</tr> 
+ 				</c:forEach>
+ 				</table>
 		</div>
 	</div>
 
@@ -149,6 +137,8 @@
 		</form>
 	</div>
 
+	<br>
+	<br>
 	<br>
 	<br>
 

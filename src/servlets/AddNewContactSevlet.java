@@ -40,16 +40,15 @@ public class AddNewContactSevlet extends HttpServlet {
 		
 		// get session to retrieve users contacts
 		HttpSession session = request.getSession();
-		ArrayList<Contact> userContacts = (ArrayList<Contact>)session.getAttribute("userContacts");
+		User user = (User)session.getAttribute("user");
+		ArrayList<Contact> userContacts = user.getContacts();
 		
 		// add entered contact to list
 		userContacts.add(contact);
 		
-		User user = (User)(session.getAttribute("user"));
-	
 		ContactDao.addContactToDatabase(user.getUserId(), contact, (Connection)getServletContext().getAttribute("connection"));
 		
-		session.setAttribute("userContacts", userContacts);
+		session.setAttribute("user", user);
 		
 		response.sendRedirect("imena.jsp");
 		

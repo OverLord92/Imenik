@@ -30,7 +30,7 @@ public class AdminDeleteUser extends HttpServlet {
 	
 		try {
 			
-			String user_id = UserDao.getUsersId(userName, (Connection)getServletContext().getAttribute("connection"));
+			String user_id = UserDao.getUsersId(userName);
 			
 			ContactDao.deleteContactsFromDatabase(user_id, (Connection)getServletContext().getAttribute("connection"));
 			

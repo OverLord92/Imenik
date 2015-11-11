@@ -177,10 +177,14 @@ public class UserDao {
 	}
 
 	
-	public static String getUsersId(String userName, Connection connection) throws SQLException {
+	public static String getUsersId(String userName) throws SQLException {
 
 		String useriD = null;
 		ResultSet result = null;
+		
+		ConnectionManager cm = ConnectionManager.getInstance();
+		Connection connection = cm.getConnection();
+		
 		try (
 				PreparedStatement stmt = connection.prepareStatement("SELECT user_id FROM users WHERE userName=?");) {
 			stmt.setString(1, userName);

@@ -11,11 +11,14 @@ import beans.Contact;
 public class ContactDao {
 
 	/**  */
-	public static ArrayList<Contact> getUserContacts(String user_id, Connection connection) {
+	public static ArrayList<Contact> getUserContacts(String user_id){
 
 		ArrayList<Contact> userContacts = new ArrayList<>();
 		ResultSet result = null;
 
+		ConnectionManager cm = ConnectionManager.getInstance();
+		Connection connection = cm.getConnection();
+		
 		try (
 				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM contacts WHERE user_id=?");) {
 			stmt.setString(1, user_id);
