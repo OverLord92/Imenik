@@ -76,31 +76,18 @@
 	<hr>
 	<br>
 	
+	<jsp:include page="/jspFragments/footer.jsp" />
 
-
-
-	<div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Site Built built by Senjin
-				Hajrulahovic</p>
-			<a href="https://www.facebook.com/senjin.hajrulahovic"
-				class="navbar-btn btn-primary btn pull-right">facebook profile<a>
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="contact" role="dialog">
+	<div class="modal fade" id="logOut" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4>kontakt</h4>
-				</div>
-				<div class="modal-body">
-					<p>tijelo mofala</p>
+					<h4>Klikni na Log Out da bi se odjavio</h4>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" data-dismiss="modal">klouz</a>
-					<a href="#" class="btn btn-default" data-dismiss="modal">klouz</a>
+					<form action="LogOut" method="post">
+					<center><button type="submit" class="btn btn-dafault">Odjavi se</button></center>
+					</form>
 				</div>
 			</div>
 		</div>

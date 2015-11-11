@@ -17,36 +17,7 @@
 
 <body>
 		
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<a href="#" class="navbar-brand">Senjinov online imenik</a>
-
-			<button class="navbar-toggle" data-toggle="collapse"
-				data-target=".navHeaderCollapse">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-
-			<div class="collapse navbar-collapse navHeaderCollapse">
-				<ul class="nav navbar-nav navbar-right">
-
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li><a href="#">Blog</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Social Media<b class="caret"></b></a>
-
-						<ul class="dropdown-menu">
-							<li><a href="#">Twitter</a></li>
-							<li><a href="#">Facebook</a></li>
-							<li><a href="#">Instagram</a></li>
-							<li><a href="#">Google+</a></li>
-						</ul></li>
-					<li><a href="#">About</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="/jspFragments/header.jsp" />
 
 	<div class="container">
 	<center><h3>Editujete korisnika: </h3></center><br>
@@ -103,20 +74,8 @@
 	<hr>
 	<br>
 	
-
-
-
-
-	<div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Site Built built by Senjin
-				Hajrulahovic</p>
-			<a href="https://www.facebook.com/senjin.hajrulahovic"
-				class="navbar-btn btn-primary btn pull-right">facebook profile</a>
-		</div>
-	</div>
-
-
+	<jsp:include page="/jspFragments/footer.jsp" />
+	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

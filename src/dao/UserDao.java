@@ -20,8 +20,8 @@ public class UserDao {
 		
 		try (
 				PreparedStatement stmt = connection
-						.prepareStatement("INSERT INTO users(userName, userPassword, phone_number, email_address, active)" 
-				+ " VALUES(?, ?, ?, ?, ?)");
+						.prepareStatement("INSERT INTO users(userName, userPassword, phone_number, email_address)" 
+				+ " VALUES(?, ?, ?, ?)");
 				) {
 
 			
@@ -29,12 +29,10 @@ public class UserDao {
 			stmt.setString(2, user.getUserPassword());
 			stmt.setString(3, user.getUserPhoneNumber());
 			stmt.setString(4, user.getUserEmailAddress());
-			stmt.setInt(5, 1);
 			
 			stmt.executeUpdate();
 			
-		} 
-
+		}
 	}
 	
 	
@@ -107,8 +105,8 @@ public class UserDao {
 
 		int nextAvailableUserId = 0;
 
+		Connection connection = ConnectionManager.getInstance().getConnection();
 		try (	
-				Connection connection = MyConnection.getConnection();
 				Statement stmt = connection.createStatement();
 				) {
 			ResultSet result = stmt.executeQuery("SELECT MAX(user_id) FROM users;");
@@ -133,8 +131,8 @@ public class UserDao {
 	public static ArrayList<String> getUserNames() throws SQLException {
 		ArrayList<String> userNames = new ArrayList<>();
 
+		Connection connection = ConnectionManager.getInstance().getConnection();
 		try (
-				Connection connection = MyConnection.getConnection();
 				PreparedStatement stmt = connection.prepareStatement("SELECT userName FROM users");) {
 
 			ResultSet resultSet = stmt.executeQuery();
@@ -229,7 +227,7 @@ public class UserDao {
 	
 	public static ArrayList<User> getAllUsers() throws SQLException{
 		
-		Connection connection = MyConnection.getConnection();
+		Connection connection = ConnectionManager.getInstance().getConnection();
 		
 		ArrayList<User> users = new ArrayList<>();
 		

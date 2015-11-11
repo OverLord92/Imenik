@@ -20,7 +20,7 @@
 	User user = (User) session.getAttribute("user");
 	String linkImage = user.getLinkToImage();
 
-	System.out.print(linkImage);
+	System.out.println(linkImage);
 %>
 
 <body>
@@ -152,16 +152,8 @@
 	<br>
 	<br>
 
-	<div class="navbar navbar-default navbar-fixed-bottom">
-		<div class="container">
-			<p class="navbar-text pull-left">Site Built built by Senjin
-				Hajrulahovic</p>
-			<a href="https://www.facebook.com/senjin.hajrulahovic"
-				class="navbar-btn btn-primary btn pull-right">facebook profile<a>
-		</div>
-	</div>
-
-
+	<jsp:include page="/jspFragments/footer.jsp" />
+	
 	<div class="modal fade" id="logOut" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -176,7 +168,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

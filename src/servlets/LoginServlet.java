@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import beans.Contact;
 import beans.User;
 import dao.ContactDao;
-import dao.MyConnection;
+import dao.ConnectionManager;
 import dao.UserDao;
 
 /**
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 
 		// kreiraj konekciju samo ukoliko vec ne postoji kao atribut konteksta
 		if (ctx.getAttribute("connection") == null) {
-			Connection connection = MyConnection.getConnection();
+			Connection connection = ConnectionManager.getInstance().getConnection();
 			ctx.setAttribute("connection", connection);
 		}
 	}
@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 		String adminPassword = ctx.getInitParameter("adminPassword");
 
 		if ((userName.equals(adminName)) && (userPassword.equals(adminPassword))) {
+			
 			response.sendRedirect("adminMenu.jsp");
 		}
 		// if the previous two condition are true allow the user to log in

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
-import dao.MyConnection;
+import dao.ConnectionManager;
 import dao.UserDao;
 
 /**
@@ -27,7 +27,7 @@ public class Register extends HttpServlet {
 	@Override
 	public void init(){
 		
-		Connection connection = MyConnection.getConnection();
+		Connection connection = ConnectionManager.getInstance().getConnection();
 		
 		ServletContext ctx = getServletContext();
 		ctx.setAttribute("connection", connection);
