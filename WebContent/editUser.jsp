@@ -28,7 +28,7 @@
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
 				<div class="col-sm-10">
 					<input name="userName" class="form-control" id="userName"
-						placeholder = "Unesite korisnicko ime korisnika kojeg zelite editovati">
+						placeholder = "${user.userName}">
 				</div>
 			</div>
 			
@@ -37,7 +37,7 @@
 				<label for="phoneNumber" class="col-sm-2 control-label">Broj telefona</label>
 				<div class="col-sm-10">
 						<input type = "text" name="userPhoneNumber" class="form-control" id="userPhoneNumber"
-							placeholder = "Unesite broj telefona">
+							placeholder = "${user.userPhoneNumber}">
 				</div>
 			</div>
 			
@@ -45,23 +45,23 @@
 				<label for="userEmailAddress" class="col-sm-2 control-label">Email adresa</label>
 				<div class="col-sm-10">
 						<input type = "text" name="userEmailAddress" class="form-control" id="userEmailAddress"
-							placeholder = "Unesite email adresu">
+							placeholder = "${user.userEmailAddress}">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="userPassword" class="col-sm-2 control-label">Sifra</label>
 				<div class="col-sm-3">
-						<input type = "password" name="userPassword" class="form-control" id="userPassword"
-							placeholder = "unesite sfru">
+						<input type = "text" name="userPassword" class="form-control" id="userPassword"
+							placeholder = "${user.userPassword}">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="userPasswordConfirm" class="col-sm-2 control-label">Potvrdite sifru</label>
 				<div class="col-sm-3">
-						<input type = "password" name="userPasswordConfirm" class="form-control" id="userPasswordConfirm"
-							placeholder = "potvrdite sifru">
+						<input type = "text" name="userPasswordConfirm" class="form-control" id="userPasswordConfirm"
+							placeholder = "${user.userPassword}">
 				</div>
 			</div>
 			

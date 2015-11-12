@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" session="false"%>
-<%@ page import="beans.User"%>
-<%@ page import="dao.UserDao"%>
-<%@ page import="beans.Contact"%>
-<%@ page import="java.util.ArrayList"%>
+	pageEncoding="ISO-8859-1"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,22 +12,17 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<%
-	ArrayList<User> users = UserDao.getAllUsers();
-%>
-
 <body>
 
 	<jsp:include page="/jspFragments/header.jsp" />
-		
+
 	<br>
 	<br>
 
 	<div class="container">
 		<center>
 			<h1>Korisnici</h1>
-			<br>
-			<br>
+			<br> <br>
 		</center>
 		<div class="table-responsive">
 			<table class="table">
@@ -43,18 +34,13 @@
 				</tr>
 
 
-
-				<%
-					for (int i = 0; i < users.size(); i++) {
-				%>
-				<tr>
-					<td><%=users.get(i).getUserName()%></td>
-					<td><%=users.get(i).getUserPassword()%></td>
-					<td><%=users.get(i).getUserPhoneNumber()%></td>
-				</tr>
-				<%
-					}
-				%>
+				<c:forEach items="${listOfUsers}" var="element">
+					<tr>
+						<td>${element.userName}</td>
+						<td>${element.userPhoneNumber}</td>
+						<td>${element.userEmailAddress}</td>
+					</tr>
+				</c:forEach>
 
 			</table>
 		</div>
@@ -73,7 +59,8 @@
 			<h3>Dodajte novog korisnika</h3>
 		</center>
 
-		<form id="register-form" action="AdminAddUser" class="form-horizontal" method="POST">
+		<form id="register-form" action="AdminAddUser" class="form-horizontal"
+			method="POST">
 
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Korisnicko
@@ -136,12 +123,24 @@
 	<div class="container">
 		<center>
 			<h3>Edituj korisnika</h3>
-		
-			<a href="editUser.jsp"><button type="submit" class="btn btn-warning">Edituj korisnika</button></a>
-	
-			
 		</center>
 
+		<form action="ForwardEditRequest" class="form-horizontal" method="POST">
+
+			<div class="form-group">
+				<label for="userName" class="col-sm-2 control-label">Korisnicko
+					ime</label>
+				<div class="col-sm-10">
+					<input name="userName" class="form-control" id="userName"
+						placeholder="Upisite korisnicko ime korisnika kojeg zelite editovati">
+				</div>
+			</div>
+
+			<center>
+				<button type="submit" class="btn btn-warning">Edituj
+					korisnika</button>
+			</center>
+		</form>
 
 	</div>
 
@@ -183,15 +182,15 @@
 	<br>
 
 	<jsp:include page="/jspFragments/footer.jsp" />
-	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
-	
+
 	<!-- 	jQuery validation -->
-	<script src ="js/jquery.core.js"></script> 
+	<script src="js/jquery.core.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script src="js/jquery.custom.validation.js"></script>
 

@@ -66,6 +66,9 @@ $(function(){
 			userEmailAddress: {
 				email: 'Unesite validnu email adresu',
 				required: 'Morate upisati svoju email adresu kako bi se registrovali.'
+			},
+			userPasswordConfirm: {
+				equalTo: 'Morate unjeti dva puta istu sifru'
 			}
 		}
 		

@@ -31,6 +31,7 @@
 				<li> korisniku omoguciti da ubaci profilnu sliku (1.11.) - uradnjeno</li>
 				<li> konekcija ostvarena koristeci singleton pattern (5.11.)</li>
 				<li> smanjena redundantnost koda u jsp fajlovima koristeci jsp:include tag za header i footer (6.11.)</li>
+				<li> skripleti unutar JSP-ova zamjenjani EL i JSTL-om </li>
 				</ul>
 				<a href="login.jsp" class = "btn btn-default">Do aplikacije<a>
 				<a class = "btn btn-info">Tweer it!</a>

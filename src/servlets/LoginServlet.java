@@ -74,6 +74,14 @@ public class LoginServlet extends HttpServlet {
 
 		if ((userName.equals(adminName)) && (userPassword.equals(adminPassword))) {
 			
+			ArrayList<User> listOfUsers = null;
+			try {
+				listOfUsers = UserDao.getAllUsers();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("listOfUsers", listOfUsers);
 			response.sendRedirect("adminMenu.jsp");
 		}
 		// if the previous two condition are true allow the user to log in
@@ -93,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 		
 			
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("imena.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("userProfile.jsp");
 			dispatcher.forward(request, response);
 			
 		} else {

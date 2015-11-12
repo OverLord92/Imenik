@@ -60,13 +60,16 @@ public class UserDao {
 		
 		try (
 				PreparedStatement stmt = connection
-						.prepareStatement("UPDATE users SET userPassword=?, phone_number=?, email_address=?   WHERE userName = ?");
+						.prepareStatement("UPDATE users SET userName=?, userPassword=?, phone_number=?, email_address=?   WHERE user_id = ?");
 				) {
 
-			stmt.setString(1, user.getUserPassword());
-			stmt.setString(2, user.getUserPhoneNumber());
-			stmt.setString(3, user.getUserEmailAddress());
-			stmt.setString(4, user.getUserName());
+			stmt.setString(1, user.getUserName());
+			stmt.setString(2, user.getUserPassword());
+			stmt.setString(3, user.getUserPhoneNumber());
+			stmt.setString(4, user.getUserEmailAddress());
+			stmt.setString(5, user.getUserId());
+			
+			System.out.println(user.getUserId());
 	
 			stmt.executeUpdate();
 			

@@ -50,7 +50,7 @@ public class AddNewContactSevlet extends HttpServlet {
 		
 		session.setAttribute("user", user);
 		
-		response.sendRedirect("imena.jsp");
+		response.sendRedirect("userProfile.jsp");
 		
 	}
 
