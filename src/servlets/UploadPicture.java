@@ -31,7 +31,7 @@ public class UploadPicture extends HttpServlet {
 		
 		String saveFile = new String();
 		String contentType = request.getContentType();
-		
+		System.out.println("prvi dio");
 		if((contentType != null)&&(contentType.indexOf("multipart/form-data") >= 0)){
 			
 			DataInputStream in  = new DataInputStream(request.getInputStream());
@@ -45,6 +45,8 @@ public class UploadPicture extends HttpServlet {
 				byteRead = in.read(dataBytes, totalBytesRead, formDataLength);
 				totalBytesRead += byteRead;
 			}
+			
+			System.out.println("total bytes read" + totalBytesRead);
 			
 			String file = new String(dataBytes);
 			
@@ -68,13 +70,9 @@ public class UploadPicture extends HttpServlet {
 			int startPos = ((file.substring(0, pos)).getBytes()).length;
 			int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
 			
-			saveFile = "C:/Users/GEDORA/git/Imenik/WebContent/images/" + saveFile;
+			saveFile = "c:/imenik_slike/" + saveFile;
 			
 			File ff = new File(saveFile);
-				
-			HttpSession session = request.getSession();	
-			User user = (User)session.getAttribute("user");
-			UserDao.setUserPicture(user, saveFile, (Connection)getServletContext().getAttribute("connection"));
 			
 			try{
 				FileOutputStream fileOut = new FileOutputStream(ff);
@@ -82,11 +80,12 @@ public class UploadPicture extends HttpServlet {
 				fileOut.flush();
 				fileOut.close();
 			} catch(Exception e){
+				System.err.println("nije uspjelo");
 			}
 			
 		}
 		
-		response.sendRedirect("imena.jsp");
+		response.sendRedirect("userProfile.jsp");
 		
 	}
 }

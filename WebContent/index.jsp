@@ -32,6 +32,10 @@
 				<li> konekcija ostvarena koristeci singleton pattern (5.11.)</li>
 				<li> smanjena redundantnost koda u jsp fajlovima koristeci jsp:include tag za header i footer (6.11.)</li>
 				<li> skripleti unutar JSP-ova zamjenjani EL i JSTL-om </li>
+				<br>
+				<li>ubaci malo javascripta</li>
+				<li>rjesi problem sa uploadom, vec jednom</li>
+				<li>spremi sifre korisnika kao hashcode</li>
 				</ul>
 				<a href="login.jsp" class = "btn btn-default">Do aplikacije<a>
 				<a class = "btn btn-info">Tweer it!</a>

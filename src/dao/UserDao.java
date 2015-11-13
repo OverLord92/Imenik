@@ -104,26 +104,27 @@ public class UserDao {
 	}
 
 	
-	public static int getNextAvailableUserId() {
-
-		int nextAvailableUserId = 0;
-
-		Connection connection = ConnectionManager.getInstance().getConnection();
-		try (	
-				Statement stmt = connection.createStatement();
-				) {
-			ResultSet result = stmt.executeQuery("SELECT MAX(user_id) FROM users;");
-
-			if (result.next()) {
-				nextAvailableUserId = Integer.parseInt(result.getString(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return nextAvailableUserId + 1;
-
-	}
+	/** Moze bez ove mtode */
+//	public static int getNextAvailableUserId() {
+//
+//		int nextAvailableUserId = 0;
+//
+//		Connection connection = ConnectionManager.getInstance().getConnection();
+//		try (	
+//				Statement stmt = connection.createStatement();
+//				) {
+//			ResultSet result = stmt.executeQuery("SELECT MAX(user_id) FROM users;");
+//
+//			if (result.next()) {
+//				nextAvailableUserId = Integer.parseInt(result.getString(1));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return nextAvailableUserId + 1;
+//
+//	}
 
 	/**
 	 * return an array list with userNames to check if a userName already exists
@@ -180,7 +181,7 @@ public class UserDao {
 	}
 
 	
-	public static String getUsersId(String userName) throws SQLException {
+	public static String getUsersId(String userName) {
 
 		String useriD = null;
 		ResultSet result = null;
@@ -197,6 +198,8 @@ public class UserDao {
 			if(result.next()){
 				useriD = result.getString(1);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return useriD;
@@ -225,7 +228,6 @@ public class UserDao {
 			String userImage = result.getString(6);
 			
 			user = new User(userName, userPassword, userPhoneNumber, email_address, userImage);
-			user.setUserId(userId);
 			
 		}
 

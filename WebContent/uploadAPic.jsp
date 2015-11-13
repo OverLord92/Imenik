@@ -45,8 +45,7 @@
 	</div>
 
 	<div class="container">
-		<form name="uploadForm" action="UploadPicture" method="POST"
-			enctype="multipart/form-data">
+		<form name="uploadForm" action="UploadPicture" method="POST" enctype="multipart/form-data">
 			<br> <br>
 			<div class="form-group">
 				<div class="col-sm-3"></div>
@@ -55,15 +54,14 @@
 					na Browse moze dodati svoju sliku</label>
 
 				<div class="col-sm-5">
-					<input type="file" name="file" id="exampleInputFile">
+					<input "btn btn-primary" type="file" name="file">
 				</div>
-				<br> <br>
-
+				<br><br>
 			</div>
 
 			<center>
-				<button type="submit" class="btn btn-danger">Upload sliku</button>
-				<a href="imena.jsp" class="btn btn-primary">Cancel</a>
+				<input class="btn btn-primary" type="submit" value="Submit" name="submit">
+				<a href="userProfile.jsp" class="btn btn-warning">Cancel</a>
 			</center>
 		</form>
 	</div>

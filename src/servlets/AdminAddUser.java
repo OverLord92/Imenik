@@ -38,8 +38,6 @@ public class AdminAddUser extends HttpServlet {
 				String userEmailAddress = request.getParameter("userEmailAddress");
 				
 				User user = new User(userName, userPassword, userPhoneNumber, userEmailAddress, null);
-				
-//				session.setAttribute("user", user);
 
 				UserDao.addUserToDatabase(user, (Connection)getServletContext().getAttribute("connection"));
 				

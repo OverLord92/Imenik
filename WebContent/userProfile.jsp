@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" %>
-<%@ page import="beans.User"%>
-<%@ page import="beans.Contact"%>
-<%@ page import="java.util.ArrayList"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -14,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -53,7 +51,7 @@
 	<div class=container>
 		<div class="row">
 			<div class="col-md-3">
-				<a href="uploadAPic.jsp"><img src="${user.linkToImage}" height="200" width="200"></a><br>
+				<a href="uploadAPic.jsp"><img src="images/Penguins.jpg" height="200" width="200"></a><br>
 				Kliknite sliku da azurirate sliku.
 			</div>
 			
@@ -74,20 +72,20 @@
 
 	
 	<div class="container">
-		<div class="table-responsive">
+		<div class="responsive-table">
 			<table class="table">
 
 				<tr>
-					<th>Kontakt ime</th>
-					<th>Kontakt broj telefona</th>
-					<th>Kontakt email</th>
+					<th><center>Kontakt ime</center></th>
+					<th><center>Kontakt broj telefona</center></th>
+					<th><center>Kontakt email</center></th>
 				</tr>
 
 				<c:forEach items="${user.contacts}" var="element">
 				<tr> 
- 					<td>${element.contactName}</td>
- 					<td>${element.contactPhoneNumber}</td>
- 					<td>${element.emailAddress}</td> 
+ 					<td><center>${element.contactName}</center></td>
+ 					<td><center>${element.contactPhoneNumber}</center></td>
+ 					<td><center>${element.emailAddress}</center></td> 
 				</tr> 
  				</c:forEach>
  				</table>
@@ -160,7 +158,7 @@
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 	
