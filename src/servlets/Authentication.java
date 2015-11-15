@@ -15,16 +15,23 @@ public class Authentication {
 
 	}
 
+	/**
+	 * Check if userName is available, if the password is valid 
+	 * and if the pair of entered passwords is identical.
+	 * */
 	public static boolean authenticate(String userName, String userPassword, String userPasswordConfirm) {
 
+		// check if user entered a userName
 		if (userName == null || userName.trim() == "") {
 			return false;
 		}
-
+		
+		// check if user entered password
 		if (userPassword == null || userPasswordConfirm.trim() == "") {
 			return false;
 		}
-
+		
+		// check if user entered a pair of dentical passwords
 		if (!userPassword.equals(userPasswordConfirm)) {
 			return false;
 		}
@@ -32,6 +39,7 @@ public class Authentication {
 		boolean userNameAvailable = false;
 		boolean passwordIsValid = false;
 
+		// check if userName is available and if password is valid
 		try {
 			userNameAvailable = userNameAvailable(userName);
 			passwordIsValid = passwordIsValid(userPassword);
@@ -42,15 +50,15 @@ public class Authentication {
 		return true && userNameAvailable && passwordIsValid;
 	}
 
+	/** check if userName is available */
 	public static boolean userNameAvailable(String userName) throws SQLException {
-		
 		return !UserDao.doesUserExists(userName);
-		
 	}
 
 	/**
-	 * password must contains 5 alphanumeric characters and contain at least one
-	 * letter and one digit
+	 * Check if password is valid.
+	 * Password must contains 5 alphanumeric characters and contain at least one
+	 * letter and one digit.
 	 */
 	public static boolean passwordIsValid(String password) {
 		int numberOfDigits = 0;

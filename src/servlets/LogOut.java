@@ -21,10 +21,11 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// invalidate the session 
 		HttpSession session = request.getSession(false);
-		
 		session.invalidate();
 		
+		// return to the login.jsp
 		response.sendRedirect("login.jsp");
 		
 	}

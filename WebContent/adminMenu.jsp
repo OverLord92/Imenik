@@ -41,7 +41,6 @@
 						<td>${element.userEmailAddress}</td>
 					</tr>
 				</c:forEach>
-
 			</table>
 		</div>
 	</div>
@@ -50,9 +49,6 @@
 	<br>
 	<br>
 	<br>
-
-
-
 
 	<div class="container">
 		<center>
@@ -70,8 +66,7 @@
 						placeholder="ime i prezime">
 				</div>
 			</div>
-
-
+			
 			<div class="form-group">
 				<label for="phoneNumber" class="col-sm-2 control-label">Broj
 					telefona</label>
@@ -148,7 +143,6 @@
 	<br>
 	<hr>
 
-
 	<div class="container">
 		<center>
 			<h3>Izbrisi korisnika</h3>
@@ -170,9 +164,7 @@
 					korisnika</button>
 			</center>
 		</form>
-
 	</div>
-
 
 	<br>
 	<br>

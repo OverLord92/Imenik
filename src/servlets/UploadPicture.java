@@ -31,11 +31,13 @@ public class UploadPicture extends HttpServlet {
 		
 		String saveFile = new String();
 		String contentType = request.getContentType();
-		System.out.println("prvi dio");
+	
+		// check the content type of the input
 		if((contentType != null)&&(contentType.indexOf("multipart/form-data") >= 0)){
 			
 			DataInputStream in  = new DataInputStream(request.getInputStream());
 			
+			// read the image into a byte array
 			int formDataLength = request.getContentLength();
 			byte dataBytes[] = new byte[formDataLength];
 			int byteRead = 0;
@@ -46,10 +48,10 @@ public class UploadPicture extends HttpServlet {
 				totalBytesRead += byteRead;
 			}
 			
-			System.out.println("total bytes read" + totalBytesRead);
-			
+			// create a string of the byte array
 			String file = new String(dataBytes);
 			
+			//
 			saveFile = file.substring(file.indexOf("filename=\"") + 10);
 			saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
 			saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1, saveFile.indexOf("\""));
@@ -65,26 +67,32 @@ public class UploadPicture extends HttpServlet {
 			pos = file.indexOf("\n", pos) + 1;
 			pos = file.indexOf("\n", pos) + 1;
 			
+
 			int boundaryLocation = file.indexOf(boundary, pos) - 4;
 			
 			int startPos = ((file.substring(0, pos)).getBytes()).length;
 			int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
 			
+			
 			saveFile = "c:/imenik_slike/" + saveFile;
 			
+			// create a file object of the read bytes
 			File ff = new File(saveFile);
 			
 			try{
+				// paste the image to the target file
 				FileOutputStream fileOut = new FileOutputStream(ff);
 				fileOut.write(dataBytes, startPos, (endPos - startPos));
 				fileOut.flush();
 				fileOut.close();
 			} catch(Exception e){
-				System.err.println("nije uspjelo");
+				e.printStackTrace();
+				System.err.println("An error ocurred during the upload.");
 			}
 			
 		}
 		
+		// return to the userProfile.jsp
 		response.sendRedirect("userProfile.jsp");
 		
 	}

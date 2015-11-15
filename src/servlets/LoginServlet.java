@@ -32,15 +32,13 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	public void init() {
 
+		// establish a connection with the database
+		Connection connection = ConnectionManager.getInstance().getConnection();
+		
+		// set the connection instance as a context attribute
 		ServletContext ctx = getServletContext();
-
-		System.out.println("Konekcija iz init metode controler servleta"); // brisi
-
-		// kreiraj konekciju samo ukoliko vec ne postoji kao atribut konteksta
-		if (ctx.getAttribute("connection") == null) {
-			Connection connection = ConnectionManager.getInstance().getConnection();
-			ctx.setAttribute("connection", connection);
-		}
+		ctx.setAttribute("connection", connection);
+		
 	}
 
 	/**
@@ -50,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// take the parameters from the login form
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
 
@@ -72,26 +71,32 @@ public class LoginServlet extends HttpServlet {
 		String adminName = ctx.getInitParameter("adminName");
 		String adminPassword = ctx.getInitParameter("adminPassword");
 
+		// check if the person who tries to log in is the admin
 		if ((userName.equals(adminName)) && (userPassword.equals(adminPassword))) {
 			
+			// if so get a list of all users and set is as a session attribute
 			ArrayList<User> listOfUsers = null;
 			try {
 				listOfUsers = UserDao.getAllUsers();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("listOfUsers", listOfUsers);
 			response.sendRedirect("adminMenu.jsp");
 		}
-		// if the previous two condition are true allow the user to log in
+		
+		// if the userName exists and the entered password matches the user password
+		// allow the user to log in
 		else if (userNameExists && passwordMatches) {
 
 			User user = null;
 			try {
 
+				// get the user instance with the entered userName 
 				user = UserDao.getUser(userName, (Connection) getServletContext().getAttribute("connection"));
-
+				// set the user intance as an session attribute
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				
@@ -99,12 +104,12 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-			
-			
+			// take the user to the userProfile.jsp
 			RequestDispatcher dispatcher = request.getRequestDispatcher("userProfile.jsp");
 			dispatcher.forward(request, response);
 			
 		} else {
+			// if the login was unsuccessful refresh the login.jsp and clear input fields
 			response.sendRedirect("login.jsp");
 		}
 	}

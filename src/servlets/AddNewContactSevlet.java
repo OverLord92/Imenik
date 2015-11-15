@@ -28,11 +28,9 @@ public class AddNewContactSevlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// get contact name from form on JSP page imena.jsp
+		// get contact parameters from the userProfile.jsp add new contact form
 		String contactName = request.getParameter("contactName");
-		// get contact phone number from form on JSP page imena.jsp
 		String contactPhoneNumber = request.getParameter("contactPhoneNumber");
-		
 		String emailAddress = request.getParameter("contactEmailAddress");
 		
 		// create a new contact instance
@@ -43,13 +41,12 @@ public class AddNewContactSevlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		ArrayList<Contact> userContacts = user.getContacts();
 		
-		// add entered contact to list
+		// add new contact to list
 		userContacts.add(contact);
-		
+		// add new contact to database
 		ContactDao.addContactToDatabase(user.getUserId(), contact, (Connection)getServletContext().getAttribute("connection"));
 		
-		session.setAttribute("user", user);
-		
+		// return to userProfile.jsp
 		response.sendRedirect("userProfile.jsp");
 		
 	}

@@ -28,30 +28,34 @@ public class AdminEditUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		// take new parameters from the editUser.jsp form
 		String userName = request.getParameter("userName");
 		String phoneNumber = request.getParameter("userPhoneNumber");
 		String userEmailAddress = request.getParameter("userEmailAddress");
-		
 		String password = request.getParameter("userPassword");
 		
 		try {
+			// get user from session
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
 			
-			User user = UserDao.getUser(userName, (Connection)getServletContext().getAttribute("connection"));
-			
+			// set new the updated user instance variables
+			user.setUserName(userName);
 			user.setUserPhoneNumber(phoneNumber);
 			user.setUserEmailAddress(userEmailAddress);
 			user.setUserPassword(password);
 			
+			// update the user variables in the database
 			UserDao.updateUserInDatabase(user, (Connection)getServletContext().getAttribute("connection"));
 			
+			// set the updated user list to the session
 			ArrayList<User> listOfUsers = UserDao.getAllUsers();
-			HttpSession session = request.getSession();
 			session.setAttribute("listOfUsers", listOfUsers);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
+			// redirect back to the adminMenu.jsp
 		response.sendRedirect("adminMenu.jsp");
 		
 	}

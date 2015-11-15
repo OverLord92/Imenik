@@ -51,7 +51,7 @@
 	<div class=container>
 		<div class="row">
 			<div class="col-md-3">
-				<a href="uploadAPic.jsp"><img src="images/Penguins.jpg" height="200" width="200"></a><br>
+				<a href="uploadAPic.jsp"><img src="images/Koala.jpg" height="200" width="200"></a><br>
 				Kliknite sliku da azurirate sliku.
 			</div>
 			
