@@ -38,7 +38,9 @@
 		</form>
 	</div>
 	
-	<br><br><br>
+	<br><br>
+	<hr>
+	<br>
 	
 	
 	<div class="container">
@@ -47,25 +49,6 @@
 			<center><a href = "register.jsp" class="btn btn-primary">register se</a></center>
 	</div>
 	
-	
-	<div id="accordion">
-<h3>Trigger for first accordion panel</h3>
-<div>
-dsasad
-<!-- content for first accordion -->
-</div>
-<h3>Trigger for second accordion panel</h3>
-sadas
-<div>
-<!-- content for second accordion -->
-</div>
-<h3>Trigger for third accordion panel</h3>
-sad
-<div>
-<!-- content for third accordion -->
-</div>
-</div>
-
 	<br><br>
 
 	<jsp:include page="/jspFragments/footer.jsp" />

@@ -28,17 +28,17 @@
 				<li> omoguciti korisniku da doda svoj broj u imenik ispunjavajuci formu (27.10.), - uradnjeno</li>
 				<li> omoguciti korisniku da pretrazuje imenik (29.10.), - uradnjeno</li>
 				<li> namjestiti login i register formu (31.10.) - uradnjeno</li>
-				<li> korisniku omoguciti da ubaci profilnu sliku (1.11.) - uradnjeno</li>
+				<li> <strike>korisniku omoguciti da ubaci profilnu sliku (1.11.) </strike></li>
+					<ul>
+						<li>Otkako sam projekat postavio na github koruptira mi slike pri upload-u</li>
+					</ul>
 				<li> konekcija ostvarena koristeci singleton pattern (5.11.)</li>
 				<li> smanjena redundantnost koda u jsp fajlovima koristeci jsp:include tag za header i footer (6.11.)</li>
 				<li> skripleti unutar JSP-ova zamjenjani EL i JSTL-om </li>
-				<br>
-				<li>ubaci malo javascripta</li>
-				<li>rjesi problem sa uploadom, vec jednom</li>
-				<li>spremi sifre korisnika kao hashcode</li>
+				<li> uradjena client-side validacija</li>
+				<li> koristen AJAX ukoliko se pokusava resitrovati korisnik sa vec postojecim korisnickim imenom</li>
 				</ul>
-				<a href="login.jsp" class = "btn btn-default">Do aplikacije<a>
-				<a class = "btn btn-info">Tweer it!</a>
+				<a href="login.jsp" class = "btn btn-default">Do aplikacije</a>
 			</div>
 		</div>
 		
@@ -46,14 +46,16 @@
 			<div class="row">
 					<div class="col-md-4">
 						<center><h3>Koristene tehnologije:</h3></center>
-						<p> 
-						- JSP (Java Server Pages) <br>
-						- Java Servlet <br>
-						- MySql <br>
-						- HTML <br>
-						- CSS <br>
-						- Bootstrap <br>
-						</p>
+						<ul> 
+						<li>JSP (Java Server Pages)</li>
+						<li>Java Servlet</li>
+						<li>MySql</li>
+						<li>HTML</li>
+						<li>CSS</li>
+						<li>Bootstrap</li>
+						<li>jQuery Validation i UI</li>
+						<li>AJAX</li>
+						</ul>
 					</div>
 					<div class="col-md-4">
 						<h3>Upozorenje</h3>
