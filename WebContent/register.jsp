@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -22,8 +23,9 @@
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
 				<div class="col-sm-10">
-					<input name="userName" class="form-control" id="userName"
+					<input id="userName" name="userName" class="form-control" id="userName"
 						placeholder = "Vase ime i prezime">
+						<span id="spanime"></span>
 				</div>
 			</div>
 			
@@ -39,8 +41,9 @@
 			<div class="form-group">
 				<label for="userEmailAddress" class="col-sm-2 control-label">Email adresa</label>
 				<div class="col-sm-10">
-						<input type = "text" name="userEmailAddress" class="form-control" id="userEmailAddress"
+						<input id="userEmailAddress" type = "text" name="userEmailAddress" class="form-control" id="userEmailAddress"
 							placeholder = "Unesite email adresu">
+						<span id="spanemail"></span>
 				</div>
 			</div>
 			
@@ -84,6 +87,8 @@
 	<script src="js/jquery.validate.additional.js"></script>
 	<script src="js/jquery.custom.validation.js"></script>
 
+	<!-- Custom Ajax -->
+	<script src="js/ajax.js"></script>
 
 </body>
 </html>

@@ -151,9 +151,14 @@ public class UserDao {
 	}
 
 	
-	public static boolean doesUserExists(String userName) throws SQLException {
+	public static boolean doesUserExists(String userName) {
 
-		ArrayList<String> userNames = getUserNames();
+		ArrayList<String> userNames = null;
+		try {
+			userNames = getUserNames();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return userNames.contains(userName);
 

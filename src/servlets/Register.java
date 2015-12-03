@@ -60,10 +60,10 @@ public class Register extends HttpServlet {
 
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
 				// redirect user to login.jsp
 				response.sendRedirect("login.jsp");
 				return;
-			}
 		} else {
 			// if validation was unsuccessful stay on the register.jsp
 			response.sendRedirect("register.jsp");

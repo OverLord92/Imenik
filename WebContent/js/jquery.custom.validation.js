@@ -20,6 +20,8 @@ $(function(){
 		&& /\d/.test(value)
 		&& /[a-z]/i.test(value);
 	}, 'Sifra mora biti duga najmanje 5 karaktera i mora sadrzati minimalno jedno slovo i minimlano jednu cifru.');
+	
+	
 
 	$("#login-form").validate({
 		rules: {

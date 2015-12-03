@@ -22,7 +22,7 @@
 				<label for="userName" class="col-sm-2 control-label">Korisnicko ime</label>
 				<div class="col-sm-10">
 					<input name="userName" class="form-control" id="userName"
-						placeholder = "unesite vase korisnicko ime">
+						placeholder = "unesite vase korisnicko ime" value="${existingUser}">
 				</div>
 			</div>
 			
@@ -46,6 +46,25 @@
 	<br>
 			<center><a href = "register.jsp" class="btn btn-primary">register se</a></center>
 	</div>
+	
+	
+	<div id="accordion">
+<h3>Trigger for first accordion panel</h3>
+<div>
+dsasad
+<!-- content for first accordion -->
+</div>
+<h3>Trigger for second accordion panel</h3>
+sadas
+<div>
+<!-- content for second accordion -->
+</div>
+<h3>Trigger for third accordion panel</h3>
+sad
+<div>
+<!-- content for third accordion -->
+</div>
+</div>
 
 	<br><br>
 
