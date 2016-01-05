@@ -1,9 +1,9 @@
 package dao;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Date;
 
 /** ConnectionManager class implemented using Singleton pattern */
 public class ConnectionManager {

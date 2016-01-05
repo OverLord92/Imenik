@@ -1,3 +1,3 @@
 # Imenik
-Imenik web aplikacija
+Aplikacija odradnjena sa servletima.
 
