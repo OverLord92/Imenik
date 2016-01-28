@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import beans.User;
@@ -226,7 +225,7 @@ public class UserDao {
 
 			result.next();
 
-			String userId = result.getString(1);
+//			String userId = result.getString(1);
 			String userPassword = result.getString(3);
 			String userPhoneNumber = result.getString(4);
 			String email_address = result.getString(5);

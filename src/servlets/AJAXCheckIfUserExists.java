@@ -26,7 +26,7 @@ public class AJAXCheckIfUserExists extends HttpServlet {
 		String ID = request.getParameter("ID");
 		
 		String userName = request.getParameter("userName");
-		String userEmailAddress = request.getParameter("userEmailAddress");
+//		String userEmailAddress = request.getParameter("userEmailAddress");
 		
 		if(ID.equals("userName")){
 			if(UserDao.doesUserExists(userName)){
